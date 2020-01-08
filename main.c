@@ -8,8 +8,8 @@
 int main(int ac, char *argv[])
 {
 	FILE *fp;
-	unsigned int i, j;
-	char *opcode = NULL, *opcode_arg = NULL, *line = NULL, *token = NULL;
+	char *line = NULL;
+	unsigned int i;
 	ssize_t read = 0;
 	size_t len = 0;
 
@@ -23,7 +23,8 @@ int main(int ac, char *argv[])
 		}
 		for (i = 1; (read = getline(&line, &len, fp)) != -1; i++)
 		{
-			token = strtok(line, " \n");
+			gettoken(&line);
+			/*token = strtok(line, " \n");
 			for (j = 0; token != NULL; j++)
 			{
 				if (j == 0)
@@ -37,7 +38,7 @@ int main(int ac, char *argv[])
 					printf("%s\n", opcode_arg);
 				}
 				token = strtok(NULL, " \n");
-			}
+			}*/	
 		}
 		fclose(fp);
 	}
